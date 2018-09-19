@@ -9,17 +9,22 @@ LABEL version='0.0.1'
 # Install ubuntu updates and python related stuff
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y --no-install-recommends \
+         locales \
          git \
          curl \
          wget \
-         python-setuptools \
-         python-pip \
-         python-wheel && \ 
+         python3 \
+         python3-setuptools \
+         python3-pip \
+         python3-wheel && \ 
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/*
+    rm -rf /tmp/* && \
+    locale-gen en_US.UTF-8 && \
+    update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
+ENV LANG C.UTF-8
 
 # Set the working directory
 WORKDIR /srv
@@ -27,16 +32,16 @@ WORKDIR /srv
 # Install user app:
 RUN git clone https://github.com/Stifo/mods && \
     cd  mods && \
-    pip install --no-cache-dir -e . && \
-    rm -rf /root/.cache/pip/* && \
+    pip3 install --no-cache-dir -e . && \
+    rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/* && \
     cd ..
 
 # Install DEEPaaS:
 RUN git clone https://github.com/indigo-dc/deepaas && \
     cd deepaas && \
-    pip install --no-cache-dir -U . && \
-    rm -rf /root/.cache/pip/* && \
+    pip3 install --no-cache-dir -U . && \
+    rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/* && \
     cd ..
 
