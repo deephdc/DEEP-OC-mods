@@ -52,4 +52,4 @@ RUN git clone https://github.com/indigo-dc/deepaas && \
 # Open DEEPaaS port
 EXPOSE 5000
 
-CMD deepaas-run
+CMD deepaas-run --listen-ip 0.0.0.0
