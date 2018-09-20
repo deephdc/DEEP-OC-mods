@@ -9,7 +9,6 @@ LABEL version='0.0.1'
 # Install ubuntu updates and python related stuff
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y --no-install-recommends \
-         locales \
          git \
          curl \
          wget \
@@ -20,9 +19,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/* && \
-    locale-gen en_US.UTF-8 && \
-    update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+    rm -rf /tmp/*
 
 ENV LANG C.UTF-8
 
