@@ -27,7 +27,7 @@ ENV LANG C.UTF-8
 WORKDIR /srv
 
 # Install user app:
-RUN git clone https://github.com/Stifo/mods && \
+RUN git clone https://github.com/indigo-dc/mods.git && \
     cd  mods && \
     pip3 install --no-cache-dir -e . && \
     rm -rf /root/.cache/pip3/* && \
