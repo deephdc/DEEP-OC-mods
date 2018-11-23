@@ -3,7 +3,7 @@
 ![DEEP-Hybrid-DataCloud logo](https://deep-hybrid-datacloud.eu/wp-content/uploads/2018/01/logo.png)
 
 This is a container that will simply run the DEEP as a Service API component,
-with a MODS application (model).
+with a [`MODS application (model)`](https://github.com/indigo-dc/mods).
 
 # Running the container
 
