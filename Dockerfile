@@ -1,21 +1,25 @@
-# Base image, e.g. tensorflow/tensorflow:1.7.0
-FROM ubuntu:18.04
+# Base image
+FROM bitnami/minideb
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='0.0.1'
-# MODS - Massive Online Data Streams
-
+LABEL version='0.1.0'
+LABEL description='MODS (Massive Online Data Streams) container'
 
 # Install ubuntu updates and python related stuff
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
          git \
          curl \
-         wget \
-         python3 \
          python3-setuptools \
          python3-pip \
-         python3-wheel && \ 
+         python3-wheel
+
+# install rclone
+RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rclone-current-linux-amd64.deb && \
+    dpkg -i rclone-current-linux-amd64.deb && \
+    apt install -f && \
+    rm rclone-current-linux-amd64.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
@@ -30,14 +34,6 @@ WORKDIR /srv
 RUN git clone https://github.com/indigo-dc/mods.git && \
     cd  mods && \
     pip3 install --no-cache-dir -e . && \
-    rm -rf /root/.cache/pip3/* && \
-    rm -rf /tmp/* && \
-    cd ..
-
-# Install DEEPaaS:
-RUN git clone https://github.com/indigo-dc/deepaas && \
-    cd deepaas && \
-    pip3 install --no-cache-dir -U . && \
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/* && \
     cd ..
