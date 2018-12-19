@@ -1,4 +1,4 @@
-# DEEP as a Service MODS container
+# DEEP as a Service: MODS container
 
 ![DEEP-Hybrid-DataCloud logo](https://deep-hybrid-datacloud.eu/wp-content/uploads/2018/01/logo.png)
 
