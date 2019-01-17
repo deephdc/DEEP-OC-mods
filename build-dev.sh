@@ -1,1 +1,0 @@
-docker build -t deep-mods:dev -f Dockerfile-dev .
