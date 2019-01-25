@@ -5,7 +5,7 @@
 [![Build Status](https://jenkins.indigo-datacloud.eu:8080/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-mods/master)](https://jenkins.indigo-datacloud.eu:8080/job/Pipeline-as-code/job/DEEP-OC-org/job/DEEP-OC-mods/job/master)
 
 This is a container that will simply run the DEEP as a Service API component,
-with a [`MODS application (model)`](https://github.com/indigo-dc/mods).
+with a [`MODS application module`](https://github.com/deephdc/mods).
 
 # Running the container
 
@@ -32,7 +32,7 @@ Building the container:
 1. Get the `DEEP-OC-mods` repository (this repo):
 
     ```bash
-    $ git clone https://github.com/indigo-dc/DEEP-OC-mods
+    $ git clone https://github.com/deephdc/DEEP-OC-mods
     ```
 
 2. Build the container:
