@@ -1,5 +1,4 @@
 # Base image
-# FROM bitnami/minideb
 FROM ubuntu:18.04
 
 LABEL maintainer='Stefan Dlugolinsky'
