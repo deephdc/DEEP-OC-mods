@@ -31,7 +31,7 @@ WORKDIR /srv
 RUN git clone https://github.com/deephdc/mods.git && \
     cd  mods && \
     rm requirements.txt && \
-    ln -s requirements-cpu-notf.txt requirements.txt && \
+    ln -s requirements/requirements-cpu-notf.txt requirements.txt && \
     pip3 install --no-cache-dir -e . && \
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/* && \
