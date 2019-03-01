@@ -1,6 +1,6 @@
 #!/usr/bin/groovy
 
-@Library(['github.com/indigo-dc/jenkins-pipeline-library']) _
+@Library(['github.com/indigo-dc/jenkins-pipeline-library@1.2.2']) _
 
 pipeline {
     agent {
@@ -22,7 +22,9 @@ pipeline {
             steps{
                 checkout scm
                 script {
-                    image_id = DockerBuild(dockerhub_repo, env.BRANCH_NAME)
+                    image_id = DockerBuild(
+                                    dockerhub_repo,
+                                    tag: env.BRANCH_NAME)
                 }
             }
             post {
