@@ -1,8 +1,15 @@
+ARG tag=1.12.0
+ARG pyVer=py36
+ARG version=cpu
+
+# What user branch to clone (!)
+ARG branch=test
+
 # Base image
-FROM deephdc/tensorflow:1.12.0-py36
+FROM deephdc/tensorflow:${tag}-${pyVer}
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='0.2.0'
+LABEL version='0.3.0'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # Install ubuntu updates and related stuff
@@ -27,11 +34,13 @@ ENV LANG C.UTF-8
 # Set the working directory
 WORKDIR /srv
 
+# Disable FLAAT authentication by default
+ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
+
 # Install user app:
-RUN git clone https://github.com/deephdc/mods.git && \
+RUN git clone -b $branch https://github.com/deephdc/mods.git && \
     cd  mods && \
-    rm requirements.txt && \
-    ln -s requirements/requirements-cpu-notf.txt requirements.txt && \
+    ln -s requirements/requirements-${version}.txt requirements.txt && \
     pip3 install --no-cache-dir -e . && \
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/* && \
