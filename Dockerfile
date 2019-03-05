@@ -5,7 +5,7 @@ ARG pyVer=py36
 FROM deephdc/tensorflow:${tag}-${pyVer}
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='0.3.0'
+LABEL version='0.3.1'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)
