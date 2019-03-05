@@ -35,7 +35,6 @@ pipeline {
 	                		build_args: [
 	                			"tag=${env.tf_ver}",
 	                			"pyVer=${env.py_ver}",
-	                			"version"="cpu",
 	                			"branch=master"
 	                		]
 	                	)
@@ -46,7 +45,6 @@ pipeline {
 	                		build_args: [
 	                			"tag=${env.tf_ver}-gpu",
 	                			"pyVer=${env.py_ver}",
-	                			"version"="gpu",
 	                			"branch=master"
 	                		]	                		
 	                	)
@@ -59,7 +57,6 @@ pipeline {
 	                		build_args: [
 	                			"tag=${env.tf_ver}",
 	                			"pyVer=${env.py_ver}",
-	                			"version"="cpu",
 	                			"branch=test"
 	                		]
 	                	)
@@ -70,7 +67,6 @@ pipeline {
 	                		build_args: [
 	                			"tag=${env.tf_ver}-gpu",
 	                			"pyVer=${env.py_ver}",
-	                			"version"="gpu",
 	                			"branch=test"
 	                		]	                		
 	                	)
