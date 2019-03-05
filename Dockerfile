@@ -1,9 +1,5 @@
 ARG tag=1.12.0
 ARG pyVer=py36
-ARG version=cpu
-
-# What user branch to clone (!)
-ARG branch=test
 
 # Base image
 FROM deephdc/tensorflow:${tag}-${pyVer}
@@ -11,6 +7,9 @@ FROM deephdc/tensorflow:${tag}-${pyVer}
 LABEL maintainer='Stefan Dlugolinsky'
 LABEL version='0.3.0'
 LABEL description='MODS (Massive Online Data Streams)'
+
+# What user branch to clone (!)
+ARG branch=test
 
 # Install ubuntu updates and related stuff
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -40,7 +39,11 @@ ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 # Install user app:
 RUN git clone -b $branch https://github.com/deephdc/mods.git && \
     cd  mods && \
-    ln -s requirements/requirements-${version}.txt requirements.txt && \
+    if [ "$tag" = *-gpu ] ; then \
+        ln -s requirements/requirements-gpu.txt requirements.txt; \
+    else \
+        ln -s requirements/requirements-cpu.txt requirements.txt; \
+    fi && \
     pip3 install --no-cache-dir -e . && \
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/* && \
