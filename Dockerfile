@@ -9,7 +9,7 @@ LABEL version='0.3.0'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)
-ARG branch=test
+ARG branch=master
 
 # Install ubuntu updates and related stuff
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -39,6 +39,7 @@ ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 # Install user app:
 RUN git clone -b $branch https://github.com/deephdc/mods.git && \
     cd  mods && \
+    rm requirements.txt && \
     if [ "$tag" = *-gpu ] ; then \
         ln -s requirements/requirements-gpu.txt requirements.txt; \
     else \
