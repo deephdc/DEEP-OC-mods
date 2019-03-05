@@ -1,24 +1,22 @@
+ARG tag=1.12.0
+ARG pyVer=py36
+
 # Base image
-FROM ubuntu:18.04
+FROM deephdc/tensorflow:${tag}-${pyVer}
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='0.1.0'
-LABEL description='MODS (Massive Online Data Streams) container'
+LABEL version='0.3.0'
+LABEL description='MODS (Massive Online Data Streams)'
 
-# Install ubuntu updates and python related stuff
+# What user branch to clone (!)
+ARG branch=test
+
+# Install ubuntu updates and related stuff
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
-    apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
          git \
-         curl \
-         python3-setuptools \
-         python3-pip \
-         build-essential \
-         python3-dev \
-         python3-wheel
-
-RUN pip3 install --upgrade pip
+         curl
 
 # install rclone
 RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rclone-current-linux-amd64.deb && \
@@ -35,22 +33,21 @@ ENV LANG C.UTF-8
 # Set the working directory
 WORKDIR /srv
 
+# Disable FLAAT authentication by default
+ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
+
 # Install user app:
-RUN git clone https://github.com/deephdc/mods.git && \
+RUN git clone -b $branch https://github.com/deephdc/mods.git && \
     cd  mods && \
+    if [ "$tag" = *-gpu ] ; then \
+        ln -s requirements/requirements-gpu.txt requirements.txt; \
+    else \
+        ln -s requirements/requirements-cpu.txt requirements.txt; \
+    fi && \
     pip3 install --no-cache-dir -e . && \
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/* && \
     cd ..
-
-#####
-# Your code may download necessary data automatically or 
-# you force the download during docker build. Example below is for latter case:
-#ENV Resnet50Data DogResnet50Data.npz
-#ENV S3STORAGE https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/
-#RUN curl -o ./dogs_breed_det/models/bottleneck_features/${Resnet50Data} \
-#    ${S3STORAGE}${Resnet50Data}
-
 
 # Open DEEPaaS port
 EXPOSE 5000
