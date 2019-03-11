@@ -47,4 +47,4 @@ RUN git clone -b $branch https://github.com/deephdc/mods.git && \
 # Open DEEPaaS port
 EXPOSE 5000
 
-CMD deepaas-run --listen-ip 0.0.0.0
+CMD ["sh", "-c", "deepaas-run --openwhisk-detect --listen-ip 0.0.0.0"]
