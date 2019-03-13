@@ -39,12 +39,6 @@ ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 # Install user app:
 RUN git clone -b $branch https://github.com/deephdc/mods.git && \
     cd  mods && \
-    rm requirements.txt && \
-    if [ "$tag" = *-gpu ] ; then \
-        ln -s requirements/requirements-gpu.txt requirements.txt; \
-    else \
-        ln -s requirements/requirements-cpu.txt requirements.txt; \
-    fi && \
     pip3 install --no-cache-dir -e . && \
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/* && \
@@ -53,4 +47,4 @@ RUN git clone -b $branch https://github.com/deephdc/mods.git && \
 # Open DEEPaaS port
 EXPOSE 5000
 
-CMD deepaas-run --listen-ip 0.0.0.0
+CMD ["sh", "-c", "deepaas-run --openwhisk-detect --listen-ip 0.0.0.0"]
