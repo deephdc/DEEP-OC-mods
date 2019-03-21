@@ -14,6 +14,13 @@ pipeline {
     }
 
     stages {
+        stage('Validate metadata') {
+            steps {
+                checkout scm
+                sh 'deep-app-schema-validator metadata.json'
+            }
+        }
+
         stage('Docker image building') {
             when {
                 anyOf {
@@ -23,7 +30,6 @@ pipeline {
                 }
             }
             steps{
-                checkout scm
                 script {
                     id = "${env.dockerhub_repo}"
                     
