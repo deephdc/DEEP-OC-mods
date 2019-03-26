@@ -38,7 +38,7 @@ ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
 # Install DEEPaaS:
 RUN git clone -b test-args https://github.com/indigo-dc/DEEPaaS.git && \
-    cd deepaas && \
+    cd DEEPaaS && \
     pip3 install --no-cache-dir -U . && \
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/* && \
@@ -46,7 +46,7 @@ RUN git clone -b test-args https://github.com/indigo-dc/DEEPaaS.git && \
 
 # Install user app:
 RUN git clone -b $branch https://github.com/deephdc/mods.git && \
-    cd  mods && \
+    cd mods && \
     pip3 install --no-cache-dir -e . && \
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/* && \
