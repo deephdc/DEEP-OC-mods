@@ -5,11 +5,11 @@ ARG pyVer=py36
 FROM deephdc/tensorflow:${tag}-${pyVer}
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='0.3.1'
+LABEL version='0.3.2'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)
-ARG branch=master
+ARG branch=test
 
 # Install ubuntu updates and related stuff
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -36,6 +36,14 @@ WORKDIR /srv
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
+# Install DEEPaaS:
+RUN git clone -b test-args https://github.com/indigo-dc/DEEPaaS.git && \
+    cd deepaas && \
+    pip3 install --no-cache-dir -U . && \
+    rm -rf /root/.cache/pip3/* && \
+    rm -rf /tmp/* && \
+    cd ..
+
 # Install user app:
 RUN git clone -b $branch https://github.com/deephdc/mods.git && \
     cd  mods && \
@@ -47,4 +55,4 @@ RUN git clone -b $branch https://github.com/deephdc/mods.git && \
 # Open DEEPaaS port
 EXPOSE 5000
 
-CMD ["sh", "-c", "deepaas-run --openwhisk-detect --listen-ip 0.0.0.0"]
+CMD ["sh", "-c", "deepaas-run --listen-ip 0.0.0.0"]
