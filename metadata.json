@@ -21,7 +21,7 @@
 		"**References**",
 		"[1]: Bhattacharyya, D.K. and Kalita, J.K., 2013. Network anomaly detection: A machine learning perspective. Chapman and Hall/CRC.",
 		"[2]: Dua, S. and Du, X., 2016. Data mining and machine learning in cybersecurity. Auerbach Publications.",
-		"[3]: Yann LeCun, Yoshua Bengio, and Geofrey Hinton. [Deep learning](https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf). Nature, 521(7553):436–444, may 2015.",
+		"[3]: Yann LeCun, Yoshua Bengio, and Geofrey Hinton. [Deep learning](https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf). Nature, 521(7553):436-444, may 2015.",
 		"[4]: Nguyen, G., Nguyen, B.M., Tran, D. and Hluchy, L., 2018. A heuristics approach to mine behavioural data logs in mobile malware detection system. Data & Knowledge Engineering, 115, pp.129-151.",
 		"[5]: Tran, N., Nguyen, T., Nguyen, B.M. and Nguyen, G., 2018. A Multivariate Fuzzy Time Series Resource Forecast Model for Clouds using LSTM and Data Correlation Analysis. Procedia Computer Science, 126, pp.636-645."
 	],
@@ -36,6 +36,10 @@
 		"docker_registry_repo": "deephdc/deep-oc-mods",
 		"code": "https://github.com/deephdc/mods"
 	},
+    "continuous_integration": {
+        "build_status_badge": "https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-mods/master",
+        "build_status_url": "https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/DEEP-OC-mods/job/master"
+    },
     "tosca": [
         {
             "title": "Mesos (CPU)",

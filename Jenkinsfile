@@ -14,6 +14,13 @@ pipeline {
     }
 
     stages {
+        stage('Validate metadata') {
+            steps {
+                checkout scm
+                sh 'deep-app-schema-validator metadata.json'
+            }
+        }
+
         stage('Docker image building') {
             when {
                 anyOf {
@@ -23,7 +30,6 @@ pipeline {
                 }
             }
             steps{
-                checkout scm
                 script {
                     id = "${env.dockerhub_repo}"
                     
@@ -75,9 +81,6 @@ pipeline {
             }
         }
         
-        
-        
-        
         stage('Docker Hub delivery') {
             when {
                 anyOf {
@@ -98,6 +101,18 @@ pipeline {
                 }
                 always {
                     cleanWs()
+                }
+            }
+        }
+
+        stage("Render metadata on the marketplace") {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    def job_result = JenkinsBuildJob("Pipeline-as-code/deephdc.github.io/pelican")
+                    job_result_url = job_result.absoluteUrl
                 }
             }
         }
