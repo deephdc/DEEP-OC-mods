@@ -9,7 +9,7 @@ LABEL version='0.3.2'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)
-ARG branch=test
+ARG branch=master
 
 # Install ubuntu updates and related stuff
 RUN DEBIAN_FRONTEND=noninteractive \
