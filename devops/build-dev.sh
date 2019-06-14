@@ -1,4 +1,4 @@
 #!/bin/bash
- build\
+docker build\
  -f Dockerfile-dev\
- -t deephdc/deep-oc-mods-dev .
+ -t deep-oc-mods:dev .
