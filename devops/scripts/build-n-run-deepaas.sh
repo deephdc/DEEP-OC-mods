@@ -6,4 +6,4 @@ cd .. && \
 cd deepaas/ && \
 pip3 install -U . && \
 cd .. && \
-deepaas-run --listen-ip 0.0.0.0
+deepaas-run --openwhisk-detect --listen-ip 0.0.0.0 --listen-port 5000
