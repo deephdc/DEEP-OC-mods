@@ -1,11 +1,11 @@
-ARG tag=1.12.0
-ARG pyVer=py36
+ARG tf_ver=1.12.0
+ARG py_ver=py36
 
 # Base image
-FROM deephdc/tensorflow:${tag}-${pyVer}
+FROM deephdc/tensorflow:${tf_ver}-${py_ver}
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='0.3.2'
+LABEL version='0.3.3'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)
@@ -37,7 +37,7 @@ WORKDIR /srv
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
 # Install DEEPaaS:
-RUN git clone -b test-args https://github.com/indigo-dc/DEEPaaS.git && \
+RUN git clone -b master https://github.com/indigo-dc/DEEPaaS.git && \
     cd DEEPaaS && \
     pip3 install --no-cache-dir -U . && \
     rm -rf /root/.cache/pip3/* && \
