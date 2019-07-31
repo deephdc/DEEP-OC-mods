@@ -1,11 +1,11 @@
-ARG tag=1.12.0
-ARG pyVer=py36
+ARG tf_ver=1.12.0
+ARG py_ver=py36
 
 # Base image
-FROM deephdc/tensorflow:${tag}-${pyVer}
+FROM deephdc/tensorflow:${tf_ver}-${py_ver}
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='0.3.1'
+LABEL version='0.3.3'
 LABEL description='MODS (Massive Online Data Streams) - dev'
 
 # What user branch to clone (!)
