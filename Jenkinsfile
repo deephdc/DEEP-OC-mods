@@ -107,7 +107,10 @@ pipeline {
 
         stage("Render metadata on the marketplace") {
             when {
-                branch 'master'
+                allOf {
+                    branch 'master'
+                    changeset 'metadata.json'
+                }
             }
             steps {
                 script {
