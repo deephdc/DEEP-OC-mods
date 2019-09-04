@@ -16,7 +16,14 @@ RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
     apt-get install -y --no-install-recommends \
          git \
-         curl
+         curl \
+         net-tools
+
+# Set LANG environment
+ENV LANG C.UTF-8
+
+# Set the working directory
+WORKDIR /srv
 
 # install rclone
 RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rclone-current-linux-amd64.deb && \
@@ -28,21 +35,19 @@ RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rc
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
-ENV LANG C.UTF-8
-
-# Set the working directory
-WORKDIR /srv
+# Install DEEPaaS from PyPi
+# Install FLAAT (FLAsk support for handling Access Tokens)
+RUN pip install --no-cache-dir \
+    deepaas \
+    flaat && \
+    rm -rf /root/.cache/pip/* && \
+    rm -rf /tmp/*
 
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
-# Install DEEPaaS:
-RUN git clone -b master https://github.com/indigo-dc/DEEPaaS.git && \
-    cd DEEPaaS && \
-    pip3 install --no-cache-dir -U . && \
-    rm -rf /root/.cache/pip3/* && \
-    rm -rf /tmp/* && \
-    cd ..
+# Install DEEP debug_log scripts:
+RUN git clone https://github.com/deephdc/deep-debug_log
 
 # Install user app:
 RUN git clone -b $branch https://github.com/deephdc/mods.git && \
@@ -55,4 +60,4 @@ RUN git clone -b $branch https://github.com/deephdc/mods.git && \
 # Open DEEPaaS port
 EXPOSE 5000
 
-CMD ["deepaas-run", "--openwhisk-detect", "--listen-ip", "0.0.0.0", "--listen-port", "5000"] 
+CMD ["/srv/deep-debug_log/debug_log.sh", "--deepaas_port=5000", "--remote_dir=deepnc:/Logs/"]
