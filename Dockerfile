@@ -35,12 +35,6 @@ RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rc
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/*
 
-# Install DEEPaaS from PyPi
-RUN pip3 install --no-cache-dir \
-    deepaas && \
-    rm -rf /root/.cache/pip3/* && \
-    rm -rf /tmp/*
-
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
