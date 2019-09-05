@@ -37,7 +37,7 @@ RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rc
 
 # Install DEEPaaS from PyPi
 # Install FLAAT (FLAsk support for handling Access Tokens)
-RUN pip install --no-cache-dir \
+RUN pip3 install --no-cache-dir \
     deepaas \
     flaat && \
     rm -rf /root/.cache/pip/* && \
@@ -48,14 +48,6 @@ ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
 # Install DEEP debug_log scripts:
 RUN git clone https://github.com/deephdc/deep-debug_log
-
-# Install DEEPaaS from GitHub
-RUN git clone -b master https://github.com/indigo-dc/DEEPaaS.git && \
-     cd DEEPaaS && \
-     pip3 install --no-cache-dir -U . && \
-     rm -rf /root/.cache/pip3/* && \
-     rm -rf /tmp/* && \
-     cd ..
 
 # Install user app:
 RUN git clone -b $branch https://github.com/deephdc/mods.git && \
