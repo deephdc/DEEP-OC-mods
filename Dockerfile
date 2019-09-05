@@ -32,15 +32,12 @@ RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rc
     rm rclone-current-linux-amd64.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
 # Install DEEPaaS from PyPi
-# Install FLAAT (FLAsk support for handling Access Tokens)
-RUN pip install --no-cache-dir \
-    deepaas \
-    flaat && \
-    rm -rf /root/.cache/pip/* && \
+RUN pip3 install --no-cache-dir \
+    deepaas && \
+    rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/*
 
 # Disable FLAAT authentication by default
