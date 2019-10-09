@@ -1,5 +1,8 @@
+ARG tf_ver=1.14.0
+ARG py_ver=py3
+
 # Base image
-FROM tensorflow/tensorflow:1.14.0-gpu-py3
+FROM tensorflow/tensorflow:${tf_ver}-${py_ver}
 
 LABEL maintainer='Stefan Dlugolinsky'
 LABEL version='0.4.0'
@@ -29,6 +32,11 @@ RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rc
     rm rclone-current-linux-amd64.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/*
+
+# Install DEEPaaS from PyPi
+RUN pip3 install --no-cache-dir \
+    deepaas && \
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/*
 
