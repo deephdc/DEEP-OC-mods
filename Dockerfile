@@ -10,6 +10,8 @@ LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)
 ARG branch=test
+# If to install JupyterLab
+ARG jlab=true
 
 # Install ubuntu updates and related stuff
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -45,6 +47,21 @@ ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
 # Install DEEP debug_log scripts:
 RUN git clone https://github.com/deephdc/deep-debug_log
+
+# Install JupyterLab
+ENV JUPYTER_CONFIG_DIR /srv/.jupyter/
+ENV SHELL /bin/bash
+RUN if [ "$jlab" = true ]; then \
+       apt update && \
+       apt install -y nodejs npm && \
+       apt-get clean && \
+       rm -rf /var/lib/apt/lists/* && \
+       rm -rf /tmp/* && \
+       pip3 install --no-cache-dir jupyterlab ; \
+       rm -rf /root/.cache/pip3/* && \
+       rm -rf /tmp/* && \
+       git clone https://github.com/deephdc/deep-jupyter /srv/.jupyter ; \
+    else echo "[INFO] Skip JupyterLab installation!"; fi
 
 # Install user app:
 RUN git clone -b $branch https://github.com/deephdc/mods.git && \
