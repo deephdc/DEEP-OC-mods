@@ -1,11 +1,11 @@
-ARG tf_ver=1.14.0
+ARG tf_ver=1.15.0
 ARG py_ver=py3
 
 # Base image
 FROM tensorflow/tensorflow:${tf_ver}-${py_ver}
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='0.4.0'
+LABEL version='0.5.0'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)

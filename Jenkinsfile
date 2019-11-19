@@ -9,7 +9,7 @@ pipeline {
 
     environment {
         dockerhub_repo = "deephdc/deep-oc-mods"
-        tf_ver = "1.14.0"
+        tf_ver = "1.15.0"
         py_ver = "py3"
     }
 
