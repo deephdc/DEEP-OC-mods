@@ -9,7 +9,9 @@ LABEL version='1.0.0'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)
-ARG branch=test
+ARG branch_mods="test"
+# What DEEPaaS branch to clone (!)
+ARG branch_deepaas="WIP/api_v2"
 # If to install JupyterLab
 ARG jlab=true
 
@@ -64,8 +66,16 @@ RUN if [ "$jlab" = true ]; then \
        git clone https://github.com/deephdc/deep-jupyter /srv/.jupyter ; \
     else echo "[INFO] Skip JupyterLab installation!"; fi
 
+# Install DEEPaaS:
+RUN git clone -b $branch_deepaas https://github.com/indigo-dc/DEEPaaS.git && \
+    cd deepaas && \
+    pip3 install --no-cache-dir -U . && \
+    rm -rf /root/.cache/pip3/* && \
+    rm -rf /tmp/* && \
+    cd ..
+
 # Install user app:
-RUN git clone -b $branch https://github.com/deephdc/mods.git && \
+RUN git clone -b $branch_mods https://github.com/deephdc/mods.git && \
     cd mods && \
     pip3 install --no-cache-dir -e . && \
     rm -rf /root/.cache/pip3/* && \
