@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-docker pull deephdc/deep-oc-mods:gpu
+#docker pull deephdc/deep-oc-mods:gpu
 
 docker run\
   --gpus all\

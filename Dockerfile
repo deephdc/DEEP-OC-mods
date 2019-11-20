@@ -1,11 +1,11 @@
-ARG tf_ver=1.15.0
+ARG tf_ver=2.0.0
 ARG py_ver=py3
 
 # Base image
 FROM tensorflow/tensorflow:${tf_ver}-${py_ver}
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='0.5.0'
+LABEL version='1.0.0'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)
@@ -19,7 +19,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
          git \
          curl \
-         net-tools
+         net-tools && \
+    pip3 install --upgrade pip
 
 # Set LANG environment
 ENV LANG C.UTF-8

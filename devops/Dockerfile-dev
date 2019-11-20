@@ -1,11 +1,11 @@
-ARG tf_ver=1.15.0
+ARG tf_ver=2.0.0
 ARG py_ver=py3
 
 # Base image
 FROM tensorflow/tensorflow:${tf_ver}-${py_ver}
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='0.4.0'
+LABEL version='1.0.0'
 LABEL description='MODS (Massive Online Data Streams) - dev'
 
 # What user branch to clone (!)
@@ -18,7 +18,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
     apt-get install -y --no-install-recommends \
          git \
-         curl
+         curl && \
+    pip install --upgrade pip
 
 # install rclone
 RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rclone-current-linux-amd64.deb && \
