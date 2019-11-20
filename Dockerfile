@@ -68,7 +68,7 @@ RUN if [ "$jlab" = true ]; then \
 
 # Install DEEPaaS:
 RUN git clone -b $branch_deepaas https://github.com/indigo-dc/DEEPaaS.git && \
-    cd deepaas && \
+    cd DEEPaaS && \
     pip3 install --no-cache-dir -U . && \
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/* && \
