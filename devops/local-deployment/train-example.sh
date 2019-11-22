@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-MODELS_DIR="/srv/mods/models"
-MODEL_NAME="$MODELS_DIR/mods-example-lstm"
+# MODELS_DIR="/srv/mods/models"
+# MODEL_NAME="$MODELS_DIR/mods-example-lstm"
+MODEL_NAME="mods-example-lstm"
 DATA_SELECT_QUERY="\
 conn|in_count_uid~conn_in|out_count_uid~conn_out;\
 dns|in_distinct_query~dns_in_distinct;\
