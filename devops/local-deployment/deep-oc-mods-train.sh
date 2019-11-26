@@ -2,7 +2,7 @@
 
 if [ $# -eq 0 ]; then
 	echo """\
-usage: $0 [-h] [--model_name MODEL_NAME]
+usage: $0 [-h] [--model_file MODEL_FILE]
                 [--data_select_query DATA_SELECT_QUERY]
                 [--train_time_range TRAIN_TIME_RANGE]
                 [--train_time_ranges_excluded TRAIN_TIME_RANGES_EXCLUDED]
