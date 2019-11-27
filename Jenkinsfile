@@ -44,6 +44,8 @@ pipeline {
                                 "branch=master"
                             ]
                         )
+                        // Check that default CMD is correct by starting the image
+                        sh "bash ./check_docker_start.sh ${env.dockerhub_repo}"
                         // GPU
                         id_gpu = DockerBuild(
                             id,
@@ -66,6 +68,8 @@ pipeline {
                                 "branch=test"
                             ]
                         )
+                        // Check that default CMD is correct by starting the image
+                        sh "bash ./check_docker_start.sh ${env.dockerhub_repo}:test"
                         // GPU
                         id_gpu = DockerBuild(
                             id,
