@@ -89,8 +89,8 @@ fi
 
 
 # Trying to access the deployment
-c_url="http://localhost:${HOST_PORT}/models/"
-c_args_h1="Accept: application/json"
+c_url="http://localhost:${HOST_PORT}/v2/models/"
+c_args_h="Accept: application/json"
 
 max_try=10     # max number of tries to access DEEPaaS API
 itry=1         # initial try number
