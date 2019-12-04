@@ -36,7 +36,7 @@ RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rc
 
 # Install DEEPaaS from PyPi
 RUN pip3 install --no-cache-dir \
-    deepaas && \
+    deepaas==0.5.1 && \
     rm -rf /root/.cache/pip3/* && \
     rm -rf /tmp/*
 
