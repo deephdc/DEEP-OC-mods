@@ -5,4 +5,4 @@ docker run\
  -it\
  -p 5000:5000\
  -v "$HOME"/.config:/root/.config\
- deephdc/deep-oc-mods
+ deephdc/deep-oc-mods:cpu
