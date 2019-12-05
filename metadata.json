@@ -28,7 +28,7 @@
 	"keywords": [
 		"services",
 		"docker",
-		"api-v1"
+		"api-v2"
 	],
 	"license": "Apache 2.0",
 	"date_creation": "2019-02-19",
