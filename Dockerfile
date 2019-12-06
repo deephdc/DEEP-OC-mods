@@ -86,4 +86,5 @@ RUN git clone -b $branch_mods https://github.com/deephdc/mods.git && \
 # Open DEEPaaS port
 EXPOSE 5000
 
-CMD ["/srv/deep-debug_log/debug_log.sh", "--deepaas_port=5000", "--remote_dir=deepnc:/Logs/"]
+#CMD ["/srv/deep-debug_log/debug_log.sh", "--deepaas_port=5000", "--remote_dir=deepnc:/Logs/"]
+CMD ["deepaas-run", "--openwhisk-detect", "--listen-ip", "0.0.0.0", "--listen-port", "5000"]
