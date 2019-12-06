@@ -20,4 +20,4 @@ usage: $0 [-h] [--model_file MODEL_FILE]
 	exit 0
 fi
 
-docker exec -t deep-oc-mods python /srv/mods/mods/models/train.py $*
+docker exec -t deep-oc-mods-cpu python /srv/mods/mods/models/train.py $*

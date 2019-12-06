@@ -5,7 +5,7 @@ ARG py_ver=py3
 FROM tensorflow/tensorflow:${tf_ver}-${py_ver}
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='1.0.0'
+LABEL version='2.0.0'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)
@@ -40,12 +40,6 @@ RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rc
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
-# Install DEEPaaS from PyPi
-RUN pip3 install --no-cache-dir \
-    deepaas && \
-    rm -rf /root/.cache/pip3/* && \
-    rm -rf /tmp/*
-
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
@@ -67,6 +61,12 @@ RUN if [ "$jlab" = true ]; then \
        git clone https://github.com/deephdc/deep-jupyter /srv/.jupyter ; \
     else echo "[INFO] Skip JupyterLab installation!"; fi
 
+# Install DEEPaaS from PyPi
+#RUN pip3 install --no-cache-dir \
+#    deepaas==$deepaas_ver && \
+#    rm -rf /root/.cache/pip3/* && \
+#    rm -rf /tmp/*
+
 # Install DEEPaaS:
 RUN git clone -b $branch_deepaas https://github.com/indigo-dc/DEEPaaS.git && \
     cd DEEPaaS && \
@@ -87,4 +87,4 @@ RUN git clone -b $branch_mods https://github.com/deephdc/mods.git && \
 EXPOSE 5000
 
 #CMD ["/srv/deep-debug_log/debug_log.sh", "--deepaas_port=5000", "--remote_dir=deepnc:/Logs/"]
-CMD ["deepaas-run", "--openwhisk-detect", "--listen-ip", "0.0.0.0", "--listen-port", "5000"] 
+CMD ["deepaas-run", "--openwhisk-detect", "--listen-ip", "0.0.0.0", "--listen-port", "5000"]
