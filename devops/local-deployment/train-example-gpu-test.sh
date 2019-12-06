@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 MODELS_DIR="/srv/mods/models"
-MODEL_FILE="$MODELS_DIR/mods-example-lstm.zip"
+MODEL_FILE="$MODELS_DIR/mods-example-lstm-gpu-test.zip"
 DATA_SELECT_QUERY="\
 conn|in_count_uid~conn_in|out_count_uid~conn_out;\
 dns|in_distinct_query~dns_in_distinct;\
@@ -15,12 +15,12 @@ SEQUENCE_LEN="12"
 MODEL_DELTA="True"
 STEPS_AHEAD="1"
 MODEL_TYPE="LSTM"
-NUM_EPOCHS="50"
+NUM_EPOCHS="1"
 EPOCHS_PATIENCE="10"
 BLOCKS="12"
 BATCH_SIZE="1"
 
-./deep-oc-mods-train-gpu.sh\
+./deep-oc-mods-train-gpu-test.sh\
 	--model_file "$MODEL_FILE"\
 	--data_select_query "$DATA_SELECT_QUERY"\
 	--train_time_range "$TRAIN_TIME_RANGE"\

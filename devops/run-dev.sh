@@ -3,7 +3,7 @@ docker run\
  --name=deep-oc-mods-dev\
  --rm\
  -it\
- -p 5001:5000\
+ -p 5000:5000\
  -v ${HOME}/.config/rclone:/root/.config/rclone\
  -v "$(pwd)"/../../mods:/srv/mods\
  -v "$(pwd)"/../../deepaas:/srv/deepaas\
