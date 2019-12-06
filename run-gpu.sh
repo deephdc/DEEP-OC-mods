@@ -1,8 +1,9 @@
 #!/bin/bash
 docker run\
- --name=deep-mods\
+ --gpus all\
+ --name=deep-mods-gpu\
  --rm\
- -it\
+ -d\
  -p 5000:5000\
  -v "$HOME"/.config:/root/.config\
- deephdc/deep-oc-mods:cpu
+ deephdc/deep-oc-mods:gpu
