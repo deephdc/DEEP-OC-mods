@@ -11,7 +11,7 @@ LABEL description='MODS (Massive Online Data Streams)'
 # What user branch to clone (!)
 ARG branch_mods="test"
 # What DEEPaaS branch to clone (!)
-ARG branch_deepaas="WIP/api_v2"
+ARG branch_deepaas="master"
 # If to install JupyterLab
 ARG jlab=true
 
