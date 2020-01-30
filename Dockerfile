@@ -9,7 +9,11 @@ LABEL version='2.0.0'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)
-ARG branch_mods="test"
+ARG branch_mods="master"
+# If to install DEEPaaS from PyPi
+ARG deepaas_pypi=true
+# What DEEPaaS version to install from PyPi
+ARG deepaas_ver=1.0.0
 # What DEEPaaS branch to clone (!)
 ARG branch_deepaas="master"
 # If to install JupyterLab
@@ -19,9 +23,9 @@ ARG jlab=true
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-         git \
-         curl \
-         net-tools && \
+        git \
+        curl \
+        net-tools && \
     pip3 install --upgrade pip
 
 # Set LANG environment
@@ -50,30 +54,35 @@ RUN git clone https://github.com/deephdc/deep-debug_log
 ENV JUPYTER_CONFIG_DIR /srv/.jupyter/
 ENV SHELL /bin/bash
 RUN if [ "$jlab" = true ]; then \
-       apt update && \
-       apt install -y nodejs npm && \
-       apt-get clean && \
-       rm -rf /var/lib/apt/lists/* && \
-       rm -rf /tmp/* && \
-       pip3 install --no-cache-dir jupyterlab ; \
-       rm -rf /root/.cache/pip3/* && \
-       rm -rf /tmp/* && \
-       git clone https://github.com/deephdc/deep-jupyter /srv/.jupyter ; \
-    else echo "[INFO] Skip JupyterLab installation!"; fi
+        apt update && \
+        apt install -y nodejs npm && \
+        apt-get clean && \
+        rm -rf /var/lib/apt/lists/* && \
+        rm -rf /tmp/* && \
+        pip3 install --no-cache-dir jupyterlab ; \
+        rm -rf /root/.cache/pip3/* && \
+        rm -rf /tmp/* && \
+        git clone https://github.com/deephdc/deep-jupyter /srv/.jupyter ; \
+    else \
+        echo "[INFO] Skip JupyterLab installation!"; fi
 
-# Install DEEPaaS from PyPi
-#RUN pip3 install --no-cache-dir \
-#    deepaas==$deepaas_ver && \
-#    rm -rf /root/.cache/pip3/* && \
-#    rm -rf /tmp/*
-
-# Install DEEPaaS:
-RUN git clone -b $branch_deepaas https://github.com/indigo-dc/DEEPaaS.git && \
-    cd DEEPaaS && \
-    pip3 install --no-cache-dir -U . && \
-    rm -rf /root/.cache/pip3/* && \
-    rm -rf /tmp/* && \
-    cd ..
+# Install DEEPaaS
+RUN if [ "$deepaas_pypi" = true ]; then \
+        echo "[INFO] Installing DEEPaas from PyPi"; \
+        pip3 install --no-cache-dir \
+            deepaas==$deepaas_ver && \
+        rm -rf /root/.cache/pip3/* && \
+        rm -rf /tmp/* ; \
+    else \
+        echo "[INFO] Installing DEEPaaS from git"; \
+        # Install DEEPaaS from git
+        git clone -b $branch_deepaas https://github.com/indigo-dc/DEEPaaS.git && \
+        cd DEEPaaS && \
+        pip3 install --no-cache-dir -U . && \
+        rm -rf /root/.cache/pip3/* && \
+        rm -rf /tmp/* && \
+        cd .. ; \
+    fi
 
 # Install user app:
 RUN git clone -b $branch_mods https://github.com/deephdc/mods.git && \
