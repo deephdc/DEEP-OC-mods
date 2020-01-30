@@ -28,7 +28,13 @@
 	"keywords": [
 		"services",
 		"docker",
-		"api-v2"
+		"api-v2",
+		"trainable",
+		"inference",
+		"deep learning",
+		"docker",
+		"keras",
+		"tensorflow"
 	],
 	"license": "Apache 2.0",
 	"date_creation": "2019-02-19",
