@@ -67,7 +67,7 @@ RUN if [ "$jlab" = true ]; then \
         echo "[INFO] Skip JupyterLab installation!"; fi
 
 # Install DEEPaaS
-RUN if [ "$deepaas_pypi" == true ]; then \
+RUN if [ "$deepaas_pypi" = true ]; then \
         echo "[INFO] Installing DEEPaas from PyPi"; \
         pip3 install --no-cache-dir \
             deepaas==$deepaas_ver && \
