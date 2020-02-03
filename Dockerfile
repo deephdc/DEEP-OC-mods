@@ -44,6 +44,9 @@ RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rc
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
+# install oneclient
+RUN curl -sS  http://get.onedata.org/oneclient.sh | bash
+
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 

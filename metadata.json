@@ -55,7 +55,9 @@
 				"rclone_url",
 				"rclone_vendor",
 				"rclone_user",
-				"rclone_pass"
+				"rclone_pass",
+				"oneclient_provider_host",
+				"oneclient_access_token"
 			]
 		}
 	]
