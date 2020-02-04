@@ -1,6 +1,7 @@
 #!/bin/bash
 docker run\
  --gpus all\
+ --privileged\
  --name=deep-mods-gpu\
  --rm\
  -it\

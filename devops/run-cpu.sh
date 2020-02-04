@@ -1,5 +1,6 @@
 #!/bin/bash
 docker run\
+ --privileged\
  --name=deep-mods\
  --rm\
  -it\
