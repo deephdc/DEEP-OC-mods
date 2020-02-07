@@ -60,4 +60,3 @@ mode.
 
 Once the container is up and running, browse to `http://localhost:5000/docs` to get
 the [OpenAPI (Swagger)](https://www.openapis.org/) documentation page.
-
