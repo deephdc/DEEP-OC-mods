@@ -21,8 +21,8 @@
 		"LSTM, GRU, bidirectional LSTM, sequence to sequence LSTM, stacked LSTM, attention LSTM, TCN, and stackedTCN.\n",
 		"",
 		"**References**\n",
-		"[1]: Nguyen G., Dlugolinsky S., Tran V., López García Á.: Deep learning for proactive network monitoring and security protection. IEEE Access, 2020, Volume 8, ISSN 2169-3536, DOI 10.1109/ACCESS.2020.2968718.\n",
-		"[2]: Nguyen G., Dlugolinsky S., Bobák M., Tran V., López García Á., Heredia I., Malík P., Hluchý L.: Machine Learning and Deep Learning frameworks and libraries for large-scale data mining: a survey. Artificial Intelligence Review, Volume 52, Issue 1, pp. 77-124, ISSN 0269-2821, DOI 10.1007/s10462-018-09679-z. Springer Nature, 2019.\n",
+		"[1]: Nguyen G., Dlugolinsky S., Tran V., López García Á.: Deep learning for proactive network monitoring and security protection. IEEE Access, 2020, Volume 8, ISSN 2169-3536, DOI 10.1109/ACCESS.2020.2968718.\n",
+		"[2]: Nguyen G., Dlugolinsky S., Bobák M., Tran V., López García Á., Heredia I., Malík P., Hluchý L.: Machine Learning and Deep Learning frameworks and libraries for large-scale data mining: a survey. Artificial Intelligence Review, Volume 52, Issue 1, pp. 77-124, ISSN 0269-2821, DOI 10.1007/s10462-018-09679-z. Springer Nature, 2019.\n",
 		"[3]: Nguyen G., Nguyen, M., Tran, D. and Hluchý L.: A heuristics approach to mine behavioural data logs in mobile malware detection system. Data & Knowledge Engineering, Volume 115, pp. 129-151, ISSN 0169-023X, DOI 10.1016/j.datak.2018.03.002. Elsevier, 2018.\n",
 		"[4]: Bhattacharyya, D.K. and Kalita, J.K., 2013. Network anomaly detection: A machine learning perspective. Chapman and Hall/CRC.\n",
 		"[5]: Dua, S. and Du, X., 2016. Data mining and machine learning in cybersecurity. Auerbach Publications.\n"
