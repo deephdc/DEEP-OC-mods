@@ -13,7 +13,7 @@ ARG branch_mods="master"
 # If to install DEEPaaS from PyPi
 ARG deepaas_pypi=true
 # What DEEPaaS version to install from PyPi
-ARG deepaas_ver=1.0.0
+ARG deepaas_ver=1.0.1
 # What DEEPaaS branch to clone (!)
 ARG branch_deepaas="master"
 # If to install JupyterLab
