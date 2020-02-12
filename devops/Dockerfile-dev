@@ -9,7 +9,7 @@ LABEL version='2.0.0'
 LABEL description='MODS (Massive Online Data Streams) - dev'
 
 # What user branch to clone (!)
-ARG branch=master
+ARG branch_mods="test"
 # If to install JupyterLab
 ARG jlab=true
 
@@ -17,26 +17,35 @@ ARG jlab=true
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-         git \
-         curl && \
-    pip install --upgrade pip
+        git \
+        curl \
+        net-tools && \
+    pip3 install --upgrade pip
 
-# install rclone
-RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rclone-current-linux-amd64.deb && \
-    dpkg -i rclone-current-linux-amd64.deb && \
-    apt install -f && \
-    rm rclone-current-linux-amd64.deb && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/*
-
+# Set LANG environment
 ENV LANG C.UTF-8
 
 # Set the working directory
 WORKDIR /srv
 
 COPY scripts/build-n-run-deepaas.sh build-n-run-deepaas.sh
+
+# install rclone
+RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rclone-current-linux-amd64.deb && \
+    dpkg -i rclone-current-linux-amd64.deb && \
+    apt install -f && \
+    mkdir /srv/.rclone/ && touch /srv/.rclone/rclone.conf && \
+    rm rclone-current-linux-amd64.deb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/*
+
+# INSTALL oneclient for ONEDATA
+RUN curl -sS  http://get.onedata.org/oneclient-1902.sh | bash && \
+    apt-get clean && \
+    mkdir -p /mnt/onedata && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/*
 
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
@@ -45,16 +54,17 @@ ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 ENV JUPYTER_CONFIG_DIR /srv/.jupyter/
 ENV SHELL /bin/bash
 RUN if [ "$jlab" = true ]; then \
-       apt update && \
-       apt install -y nodejs npm && \
-       apt-get clean && \
-       rm -rf /var/lib/apt/lists/* && \
-       rm -rf /tmp/* && \
-       pip3 install --no-cache-dir jupyterlab ; \
-       rm -rf /root/.cache/pip3/* && \
-       rm -rf /tmp/* && \
-       git clone https://github.com/deephdc/deep-jupyter /srv/.jupyter ; \
-    else echo "[INFO] Skip JupyterLab installation!"; fi
+        apt update && \
+        apt install -y nodejs npm && \
+        apt-get clean && \
+        rm -rf /var/lib/apt/lists/* && \
+        rm -rf /tmp/* && \
+        pip3 install --no-cache-dir jupyterlab ; \
+        rm -rf /root/.cache/pip3/* && \
+        rm -rf /tmp/* && \
+        git clone https://github.com/deephdc/deep-jupyter /srv/.jupyter ; \
+    else \
+        echo "[INFO] Skip JupyterLab installation!"; fi
 
 # Open DEEPaaS port
 EXPOSE 5000
