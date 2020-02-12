@@ -6,4 +6,7 @@ cd .. && \
 cd mods/ && \
 pip3 install -e . && \
 cd .. && \
-deepaas-run --openwhisk-detect --listen-ip 0.0.0.0 --listen-port 5000
+deep-start -do
+
+# old command:
+# deepaas-run --openwhisk-detect --listen-ip 0.0.0.0 --listen-port 5000
