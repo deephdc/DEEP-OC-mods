@@ -13,7 +13,7 @@ ARG branch_mods="test"
 # If to install DEEPaaS from PyPi
 ARG deepaas_pypi=true
 # What DEEPaaS version to install from PyPi
-ARG deepaas_ver=1.0.0
+ARG deepaas_ver=1.0.1
 # What DEEPaaS branch to clone (!)
 ARG branch_deepaas="master"
 # If to install JupyterLab
@@ -44,8 +44,12 @@ RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rc
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
-# install oneclient
-RUN curl -sS  http://get.onedata.org/oneclient-1902.sh | bash
+# INSTALL oneclient for ONEDATA
+RUN curl -sS  http://get.onedata.org/oneclient-1902.sh | bash && \
+    apt-get clean && \
+    mkdir -p /mnt/onedata && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/*
 
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
