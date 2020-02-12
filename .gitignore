@@ -1,4 +1,5 @@
 devops/local-deployment/nohup.out
 devops/local-deployment/volume/checkpoints/
 devops/local-deployment/volume/data/cache/
+devops/local-deployment/volume/data/features/tsv/
 devops/local-deployment/volume/models/
