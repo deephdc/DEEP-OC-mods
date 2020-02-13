@@ -1,4 +1,4 @@
-ARG tf_ver=2.0.0
+ARG tf_ver=2.0.1
 ARG py_ver=py3
 
 # Base image
