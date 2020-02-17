@@ -22,4 +22,5 @@ docker run \
  -e ONECLIENT_ACCESS_TOKEN=$ONECLIENT_ACCESS_TOKEN \
  -e ONECLIENT_PROVIDER_HOST=$ONECLIENT_PROVIDER_HOST \
  -e APP_INPUT_OUTPUT_BASE_DIR=/mnt/onedata/mods \
- deephdc/deep-oc-mods:gpu
+ deephdc/deep-oc-mods:gpu \
+ deep-start -do
