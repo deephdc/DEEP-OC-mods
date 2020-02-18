@@ -1,4 +1,4 @@
-ARG tf_ver=2.0.0
+ARG tf_ver=2.0.1
 ARG py_ver=py3
 
 # Base image
@@ -43,6 +43,19 @@ RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rc
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
+
+# INSTALL oneclient for ONEDATA
+RUN curl -sS  http://get.onedata.org/oneclient-1902.sh | bash && \
+    apt-get clean && \
+    mkdir -p /mnt/onedata && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/*
+
+# EXPERIMENTAL: install deep-start script
+# N.B.: This repository also contains run_jupyter.sh
+RUN git clone https://github.com/deephdc/deep-start /srv/.deep-start && \
+    ln -s /srv/.deep-start/deep-start.sh /usr/local/bin/deep-start && \
+    ln -s /srv/.deep-start/run_jupyter.sh /usr/local/bin/run_jupyter
 
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
