@@ -5,7 +5,7 @@ ARG py_ver=py3
 FROM tensorflow/tensorflow:${tf_ver}-${py_ver}
 
 LABEL maintainer='Stefan Dlugolinsky'
-LABEL version='2.0.0'
+LABEL version='2.1.0'
 LABEL description='MODS (Massive Online Data Streams)'
 
 # What user branch to clone (!)
