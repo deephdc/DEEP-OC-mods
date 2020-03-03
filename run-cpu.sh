@@ -24,4 +24,4 @@ docker run \
  -e ONECLIENT_PROVIDER_HOST=$ONECLIENT_PROVIDER_HOST \
  -e APP_INPUT_OUTPUT_BASE_DIR=/mnt/onedata/mods \
  deephdc/deep-oc-mods:cpu \
- deep-start -do
+ $*
