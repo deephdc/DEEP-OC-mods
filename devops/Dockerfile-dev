@@ -1,4 +1,4 @@
-ARG tf_ver=2.0.1
+ARG tf_ver=2.0.1-gpu
 ARG py_ver=py3
 
 # Base image
