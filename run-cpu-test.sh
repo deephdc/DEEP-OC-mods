@@ -11,6 +11,14 @@ export ONECLIENT_PROVIDER_HOST=
 	exit
 fi
 
+if [[ -z $APP_INPUT_OUTPUT_BASE_DIR ]]; then
+	APP_INPUT_OUTPUT_BASE_DIR=/srv/mods
+	echo \
+"""
+APP_INPUT_OUTPUT_BASE_DIR is not set. Using $APP_INPUT_OUTPUT_BASE_DIR
+"""
+fi
+
 docker run \
  --privileged \
  --name=deep-mods-cpu-test \
@@ -22,6 +30,6 @@ docker run \
  -v "$HOME"/.config:/root/.config \
  -e ONECLIENT_ACCESS_TOKEN=$ONECLIENT_ACCESS_TOKEN \
  -e ONECLIENT_PROVIDER_HOST=$ONECLIENT_PROVIDER_HOST \
- -e APP_INPUT_OUTPUT_BASE_DIR=/mnt/onedata/mods \
+ -e APP_INPUT_OUTPUT_BASE_DIR=$APP_INPUT_OUTPUT_BASE_DIR \
  deephdc/deep-oc-mods:cpu-test \
  $*
