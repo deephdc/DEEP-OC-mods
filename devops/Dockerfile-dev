@@ -17,7 +17,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
         git \
         curl \
-        net-tools && \
+        net-tools \
+        psmisc && \
     pip3 install --upgrade pip
 
 # Set LANG environment
