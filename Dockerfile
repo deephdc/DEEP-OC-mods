@@ -25,6 +25,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
         git \
         curl \
+        psmisc \
         net-tools && \
     pip3 install --upgrade pip
 
