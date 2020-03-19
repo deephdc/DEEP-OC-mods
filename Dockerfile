@@ -18,6 +18,8 @@ ARG deepaas_ver=1.2.0
 ARG branch_deepaas="master"
 # If to install JupyterLab
 ARG jlab=true
+# Oneclient version
+ARG oneclient_ver=19.02.0.rc2-1~bionic
 
 # Install ubuntu updates and related stuff
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -25,8 +27,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
         git \
         curl \
-        psmisc \
-        net-tools && \
+        net-tools \
+        psmisc && \
     pip3 install --upgrade pip
 
 # Set LANG environment
@@ -46,7 +48,7 @@ RUN curl https://downloads.rclone.org/rclone-current-linux-amd64.deb --output rc
     rm -rf /tmp/*
 
 # INSTALL oneclient for ONEDATA
-RUN curl -sS  http://get.onedata.org/oneclient-1902.sh | bash && \
+RUN curl -sS  http://get.onedata.org/oneclient-1902.sh | bash -s -- oneclient="$oneclient_ver" && \
     apt-get clean && \
     mkdir -p /mnt/onedata && \
     rm -rf /var/lib/apt/lists/* && \
