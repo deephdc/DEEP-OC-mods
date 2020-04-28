@@ -51,35 +51,13 @@
 	"tosca": [
 		{
 			"title": "Mesos (CPU/GPU)",
-			"url": "https://raw.githubusercontent.com/indigo-dc/tosca-templates/master/deep-oc/deep-oc-mods_mesos.yml",
+			"url": "https://raw.githubusercontent.com/indigo-dc/tosca-templates/master/deep-oc/deep-oc-marathon-webdav-mods.yml",
 			"inputs": [
                                 "rclone_conf",
                                 "rclone_url",
                                 "rclone_vendor",
                                 "rclone_user",
                                 "rclone_pass"
-			]
-		},
-		{
-			"title": "Mesos (CPU)",
-			"url": "https://raw.githubusercontent.com/indigo-dc/tosca-templates/master/deep-oc/deep-oc-mods_mesos-cpu.yml",
-			"inputs": [
-				"rclone_conf",
-				"rclone_url",
-				"rclone_vendor",
-				"rclone_user",
-				"rclone_pass"
-			]
-		},
-		{
-			"title": "Mesos (GPU)",
-			"url": "https://raw.githubusercontent.com/indigo-dc/tosca-templates/master/deep-oc/deep-oc-mods_mesos-gpu.yml",
-			"inputs": [
-				"rclone_conf",
-				"rclone_url",
-				"rclone_vendor",
-				"rclone_user",
-				"rclone_pass"
 			]
 		}
 	]
