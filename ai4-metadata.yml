@@ -35,3 +35,5 @@ categories:
 libraries:
   - TensorFlow
   - Keras
+data-type:
+  - Time Series
