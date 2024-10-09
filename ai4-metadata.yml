@@ -1,0 +1,37 @@
+metadata_version: 2.0.0
+title: DEEP OC Massive Online Data Streams
+summary: Deep learning for proactive network monitoring and security protection.
+description: |-
+  The use case challenges proactive network monitoring for security protection of computing infrastructures [1]. It builds an intelligent module as a machine learning application leveraging deep learning modeling  to enhance functionality  of intrusion detection system supervising network traffic flows. Preserving historical  data, cyber security for such centers can be enhanced in hybrid way [3,4,5]  using machine learning techniques, especially when large IT infrastructures and devices products  a huge amount of dataflows continuously and dynamically.
+
+  The principle  of this deep learning module (as a part of the use case) is proactive time-series forecasting.  It builds prediction models capable to produce a system behaviour estimation near future.  The discrepancy between the prediction and the reality gives an indication of anomaly (i.e. anomaly detection).
+
+  The challenge of the solution is it aims to scalable edge technologies [4] to support extensive data  analysis and modelling as well as to improve the cyber-resilience in hybrid combination in real-time with the building intelligence module using neural networks and deep learning.
+
+  Deep learning architectures [2] available in this module are: MLP, CNN, autoencoder MLP,  LSTM, GRU, bidirectional LSTM, sequence to sequence LSTM, stacked LSTM, attention LSTM, TCN, and stackedTCN.
+
+  **References**
+
+  1. Nguyen G., Dlugolinsky S., Tran V., Lopez Garcia A.: Deep learning for proactive network  monitoring and security protection. IEEE Access, 2020, Volume 8, ISSN 2169-3536, DOI 10.1109/ACCESS.2020.2968718.
+  2. Nguyen G., Dlugolinsky S., Bobak M., Tran  V., Lopez Garcia A., Heredia I., Malik P., Hluchy L.: Machine Learning and Deep Learning frameworks and libraries for large-scale data mining: a survey. Artificial Intelligence Review, Volume 52, Issue 1, pp. 77-124, ISSN 0269-2821, DOI 10.1007/s10462-018-09679-z. Springer Nature, 2019.
+  3. Nguyen G., Nguyen, M., Tran, D. and Hluchy L.: A heuristics approach to mine behavioural data logs in mobile malware detection system. Data & Knowledge Engineering, Volume 115, pp. 129-151, ISSN 0169-023X, DOI 10.1016/j.datak.2018.03.002. Elsevier, 2018.
+  4. Bhattacharyya, D.K. and Kalita, J.K., 2013. Network anomaly detection: A machine learning perspective.  Chapman and Hall/CRC.
+  5. Dua, S. and Du, X., 2016. Data mining and machine learning in cybersecurity. Auerbach Publications.
+dates:
+  created: '2019-02-19'
+  updated: '2024-10-09'
+links:
+  source_code: https://github.com/deephdc/mods
+  docker_image: deephdc/deep-oc-mods
+tags:
+  - deep learning
+tasks:
+  - Time Series
+  - Anomaly Detection
+categories:
+  - AI4 trainable
+  - AI4 inference
+  - AI4 pre trained
+libraries:
+  - TensorFlow
+  - Keras
